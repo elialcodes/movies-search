@@ -12,13 +12,14 @@ function App(): JSX.Element {
 
   const movies: SearchMovies = moviesExample.Search;
 
-  const handleInputQuery = (event): void => {
-    setQuery(event.target.value);
+  const handleInputQuery = (query: string): void => {
+    const titleMovie: string = query;
+    setQuery(titleMovie);
   };
 
   return (
     <div className="page">
-      <Header query={query} handleInputQuery={handleInputQuery} />
+      <Header query={query} onInputQuery={handleInputQuery} />
       <main>
         <List movies={movies} />
       </main>

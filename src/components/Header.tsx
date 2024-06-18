@@ -1,32 +1,25 @@
 import React from 'react';
-import { useRef } from 'react';
 
 React;
 
-type HeaderProps = { query: string; handleInputQuery: () => void };
+type HeaderProps = { query: string; onInputQuery: () => void };
 
-function Header({ query, handleInputQuery }: HeaderProps): JSX.Element {
-  //1. establecemos una referencia a un elemento del DOM
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  const handleSubmit = (event) => {
+function Header({ query, onInputQuery }: HeaderProps): JSX.Element {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    const inputElement = inputRef.current; //3. accedemos al elemento del DOM asi
-    const inputValue = inputElement.value; //4. accedemos a su value
-    console.log(inputValue);
-    handleInputQuery();
   };
-  // const handleChange = (event) => {
-  //   handleInputQuery(event.target.value);
-  // };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value: string = event.target.value;
+    onInputQuery(value);
+  };
 
   return (
     <header>
       <h1 className="title">Busca tu película</h1>
       <form className="form" onSubmit={handleSubmit}>
         <input
-          ref={inputRef} //2. relacionamos la referencia a este elemento del DOM
-          // onChange={handleChange}
+          onChange={handleChange}
           value={query} //pasamos el estado para hacer un formulario controlado
           id="movie"
           type="text"

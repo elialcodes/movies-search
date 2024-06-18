@@ -3,6 +3,7 @@
 Creat an app to search movies
 
 API: https://www.omdbapi.com/
+API_KEY:56aa5655
 
 ## Features
 

@@ -1,3 +1,6 @@
+import React from 'react';
+
+React;
 function App() {
   return (
     <>

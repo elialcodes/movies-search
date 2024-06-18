@@ -12,3 +12,7 @@
 .form {
   display: flex;
 }
+
+.error {
+  color: red;
+}

@@ -2,12 +2,31 @@ import React from 'react';
 
 React;
 
-type HeaderProps = { query: string; onInputQuery: (value: string) => void };
+type HeaderProps = {
+  query: string;
+  error: string | null;
+  onInputQuery: (value: string) => void;
+  onError: (error: string) => void;
+};
 
-function Header({ query, onInputQuery }: HeaderProps): JSX.Element {
-  //función para manejar el preventDefault del formulario
+function Header({
+  query,
+  error,
+  onInputQuery,
+  onError,
+}: HeaderProps): JSX.Element {
+  //función para manejar el preventDefault del formulario y posibles errores
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
+    if (query.length < 3) {
+      onError('Título demasiado corto');
+    }
+    if (query === '') {
+      onError('Es necesario introducir un título');
+    }
+    if (query.match(/^\d+$/)) {
+      onError('Introduce un título válido');
+    }
   };
 
   //función para tomar el valor del input y setear el estado de App
@@ -29,6 +48,7 @@ function Header({ query, onInputQuery }: HeaderProps): JSX.Element {
         />
         <button type="submit">Buscar</button>
       </form>
+      <p className="error">{error}</p>
     </header>
   );
 }

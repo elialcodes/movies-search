@@ -8,10 +8,11 @@ import moviesExample from './mocks/moviesExample.json';
 React;
 
 function App(): JSX.Element {
-  //estado
+  //estados
   const [query, setQuery] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
 
-  //ejemplo de datos que devolverá el fetch
+  //ejemplo de datos que devolverá el fetch para ir pintando algo
   const movies: SearchMovies = moviesExample.Search;
 
   //función para setear el estado con el valor del input
@@ -20,9 +21,20 @@ function App(): JSX.Element {
     setQuery(titleMovie);
   };
 
+  //función para validar el formulario si se introduce una búsqueda erronea
+  const handleError = (error: string) => {
+    const newError = error;
+    setError(newError);
+  };
+
   return (
     <div className="page">
-      <Header query={query} onInputQuery={handleInputQuery} />
+      <Header
+        query={query}
+        error={error}
+        onInputQuery={handleInputQuery}
+        onError={handleError}
+      />
       <main>
         <List movies={movies} />
       </main>

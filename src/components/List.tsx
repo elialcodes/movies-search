@@ -10,6 +10,7 @@ function List({ movies }: ListProps): JSX.Element {
   return (
     <div>
       <h2>Listado</h2>
+      {/* renderizado condicional */}
       {movies ? (
         <ul>
           {movies.map((movie) => (

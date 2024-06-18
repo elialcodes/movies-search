@@ -8,10 +8,13 @@ import moviesExample from './mocks/moviesExample.json';
 React;
 
 function App(): JSX.Element {
+  //estado
   const [query, setQuery] = useState<string>('');
 
+  //ejemplo de datos que devolverá el fetch
   const movies: SearchMovies = moviesExample.Search;
 
+  //función para setear el estado con el valor del input
   const handleInputQuery = (query: string): void => {
     const titleMovie: string = query;
     setQuery(titleMovie);

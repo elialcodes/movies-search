@@ -1,33 +1,19 @@
 import React from 'react';
-import moviesExample from '../mocks/moviesExample.json';
-// import Error from '../mocks/errorExample.json';
-React;
+import Movie from './Movie';
 
-interface Movie {
-  Title: string;
-  Year: string;
-  imdbID: string;
-  Type: string;
-  Poster: string;
+React;
+interface ListProps {
+  movies: SearchMovies;
 }
 
-type SearchMovies = Movie[];
-
-function List(): JSX.Element {
-  const movies: SearchMovies = moviesExample.Search;
-
+function List({ movies }: ListProps): JSX.Element {
   return (
     <div>
       <h2>Listado</h2>
       {movies ? (
         <ul>
           {movies.map((movie) => (
-            <li key={movie.imdbID}>
-              <h3>{movie.Title}</h3>
-              <p>{movie.Year}</p>
-              <p>{movie.Type}</p>
-              <img src={movie.Poster} alt={movie.Title} />
-            </li>
+            <Movie key={movie.imdbID} movie={movie} />
           ))}
         </ul>
       ) : (

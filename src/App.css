@@ -1,8 +1,15 @@
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
 .page {
+  margin-top: 3vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .title {
@@ -19,4 +26,24 @@
 
 .errorInput {
   border: 1px solid red;
+}
+
+.main {
+  width: 90%;
+  margin-top: 20px;
+  display: grid;
+}
+
+.list {
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  display: grid;
+  /* tiene que jugar con el espacio disponible, se va a autoajustar: cada columna será
+  de un mín de 250px de ancho y si puede ser mayor, ocupará 1fr. Si la pantalla crece, 
+  detectará si caben 2 columnas con un mínimo de 250px y las hará crecer hasta 1fr. 
+  Si la pantalla sigue creciendo, detectará si ocupando 250px caben 3 y cargará 3, etc... */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-items: center;
+  gap: 30px;
 }

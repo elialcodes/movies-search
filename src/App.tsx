@@ -35,7 +35,7 @@ function App(): JSX.Element {
         onInputQuery={handleInputQuery}
         onError={handleError}
       />
-      <main>
+      <main className="main">
         <List movies={movies} />
       </main>
     </div>

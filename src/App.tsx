@@ -1,20 +1,21 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import Header from './components/Header';
 import List from './components/List';
-import moviesExample from './mocks/moviesExample.json';
-import errorExample from './mocks/errorExample.json';
+//import moviesExample from './mocks/moviesExample.json';
+//import errorExample from './mocks/errorExample.json';
 React;
 
 function App(): JSX.Element {
   //estados
+  const [moviesAppi, setMoviesAppi] = useState<SearchMovies>([]);
   const [query, setQuery] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   //ejemplo de datos que devolverá el fetch para ir pintando unas películas o un error
-  const movies: SearchMovies = moviesExample.Search;
-  const error: { Response: string; Error: string } = errorExample;
+  //const movies: SearchMovies = moviesExample.Search;
+  //const error: { Response: string; Error: string } = errorExample;
 
   //función para setear el estado con el valor del input
   const handleInputQuery = (query: string): void => {
@@ -22,11 +23,20 @@ function App(): JSX.Element {
     setQuery(titleMovie);
   };
 
+  //función fetch a la api
+  useEffect(() => {
+    fetch(`http://www.omdbapi.com/?apikey=56aa5655&s=${query}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setMoviesAppi(data.Search);
+      })
+      .catch((error) => {
+        console.error(console.log(error));
+      });
+  }, [query]);
+
   //función para validar el formulario si se introduce una búsqueda erronea
   const handleError = (errorMessage: string | null) => {
-    if (movies.length === 0) {
-      console.log(error);
-    }
     const newError = errorMessage;
     setErrorMessage(newError);
   };
@@ -40,7 +50,7 @@ function App(): JSX.Element {
         onError={handleError}
       />
       <main className="main">
-        <List movies={movies} />
+        <List movies={moviesAppi} />
       </main>
     </div>
   );

@@ -10,14 +10,12 @@ function List({ movies }: ListProps): JSX.Element {
   return (
     <>
       {/* renderizado condicional */}
-      {movies ? (
+      {movies && (
         <ul className="list">
           {movies.map((movie) => (
             <Movie key={movie.imdbID} movie={movie} />
           ))}
         </ul>
-      ) : (
-        <p>No se encontraron resultados</p>
       )}
     </>
   );

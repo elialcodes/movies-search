@@ -22,7 +22,7 @@ function App(): JSX.Element {
   };
 
   //función para validar el formulario si se introduce una búsqueda erronea
-  const handleError = (error: string) => {
+  const handleError = (error: string | null) => {
     const newError = error;
     setError(newError);
   };

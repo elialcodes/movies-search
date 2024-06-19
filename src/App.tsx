@@ -17,12 +17,6 @@ function App(): JSX.Element {
   //const movies: SearchMovies = moviesExample.Search;
   //const error: { Response: string; Error: string } = errorExample;
 
-  //función para setear el estado con el valor del input
-  const handleInputQuery = (query: string): void => {
-    const titleMovie: string = query;
-    setQuery(titleMovie);
-  };
-
   //función fetch a la api
   useEffect(() => {
     fetch(`http://www.omdbapi.com/?apikey=56aa5655&s=${query}`)
@@ -35,10 +29,14 @@ function App(): JSX.Element {
       });
   }, [query]);
 
-  //función para validar el formulario si se introduce una búsqueda erronea
-  const handleError = (errorMessage: string | null) => {
-    const newError = errorMessage;
-    setErrorMessage(newError);
+  //función para setear el estado con el valor del input
+  const handleInputQuery = (value: string): void => {
+    setQuery(value);
+  };
+
+  //función para devolver un mensaje si se introduce una búsqueda erronea
+  const handleError = (message: string | null) => {
+    setErrorMessage(message);
   };
 
   return (

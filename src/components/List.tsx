@@ -8,25 +8,31 @@ interface ListProps {
 }
 
 function List({ movies, onInputOrder }: ListProps): JSX.Element {
-  const handleOrderYear = (event: React.MouseEvent<HTMLInputElement>) => {
+  const handleOrderYear = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputCheckbox = event.target;
-    if (inputCheckbox.checked === true) {
+    if (inputCheckbox.checked) {
       console.log('checked');
-      const orderMovies = movies.sort((a, b) => a.Year - b.Year);
+      const orderMovies = [...movies].sort((a, b) => a.Year - b.Year);
       onInputOrder(orderMovies);
+    } else {
+      onInputOrder(movies);
     }
   };
   return (
     <>
-      <form>
-        <label htmlFor="year">Ordenar por año</label>
-        <input type="checkbox" onClick={handleOrderYear} />
-      </form>
-      <ul className="list">
-        {movies.map((movie) => (
-          <Movie key={movie.imdbID} movie={movie} />
-        ))}
-      </ul>
+      {movies.length !== 0 && (
+        <>
+          <form>
+            <label htmlFor="year">Ordenar por año</label>
+            <input type="checkbox" onChange={handleOrderYear} />
+          </form>
+          <ul className="list">
+            {movies.map((movie) => (
+              <Movie key={movie.imdbID} movie={movie} />
+            ))}
+          </ul>
+        </>
+      )}
     </>
   );
 }

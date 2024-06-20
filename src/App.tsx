@@ -38,6 +38,11 @@ function App(): JSX.Element {
     setQuery(value);
   };
 
+  //función para ordenar las películas por año
+  const handleOrderMovies = (orderMovies: SearchMovies) => {
+    setMovies(orderMovies);
+  };
+
   //función para devolver un mensaje si se introduce una búsqueda erronea
   const handleError = (message: string | null) => {
     setErrorMessage(message);
@@ -52,7 +57,7 @@ function App(): JSX.Element {
         onError={handleError}
       />
       <main className="main">
-        <List movies={movies} />
+        <List movies={movies} onInputOrder={handleOrderMovies} />
       </main>
     </div>
   );

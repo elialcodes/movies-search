@@ -4,19 +4,29 @@ import Movie from './Movie';
 React;
 interface ListProps {
   movies: SearchMovies;
+  onInputOrder: (orderMovies: SearchMovies) => void;
 }
 
-function List({ movies }: ListProps): JSX.Element {
+function List({ movies, onInputOrder }: ListProps): JSX.Element {
+  const handleOrderYear = (event: React.MouseEvent<HTMLInputElement>) => {
+    const inputCheckbox = event.target;
+    if (inputCheckbox.checked === true) {
+      console.log('checked');
+      const orderMovies = movies.sort((a, b) => a.Year - b.Year);
+      onInputOrder(orderMovies);
+    }
+  };
   return (
     <>
-      {/* renderizado condicional */}
-      {movies && (
-        <ul className="list">
-          {movies.map((movie) => (
-            <Movie key={movie.imdbID} movie={movie} />
-          ))}
-        </ul>
-      )}
+      <form>
+        <label htmlFor="year">Ordenar por año</label>
+        <input type="checkbox" onClick={handleOrderYear} />
+      </form>
+      <ul className="list">
+        {movies.map((movie) => (
+          <Movie key={movie.imdbID} movie={movie} />
+        ))}
+      </ul>
     </>
   );
 }

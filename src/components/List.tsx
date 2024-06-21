@@ -27,7 +27,7 @@ function List({ movies, onInputOrder }: ListProps): JSX.Element {
 
   return (
     <>
-      {movies.length !== 0 && (
+      {movies && (
         <>
           <form>
             <select id="year" onChange={handleOrderYear}>

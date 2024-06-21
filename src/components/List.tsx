@@ -8,17 +8,19 @@ interface ListProps {
 }
 
 function List({ movies, onInputOrder }: ListProps): JSX.Element {
-  const handleOrderYear = (
-    event: React.SelectHTMLAttributes<HTMLSelectElement>,
-  ) => {
+  const handleOrderYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const inputSelect = event.target.value;
     if (inputSelect === 'ascendente') {
       console.log('ascendente');
-      const orderMovies = [...movies].sort((a, b) => a.Year - b.Year);
+      const orderMovies = [...movies].sort(
+        (a, b) => parseInt(a.Year) - parseInt(b.Year),
+      );
       onInputOrder(orderMovies);
     } else {
       console.log('descendente');
-      const orderMovies = [...movies].sort((a, b) => b.Year - a.Year);
+      const orderMovies = [...movies].sort(
+        (a, b) => parseInt(b.Year) - parseInt(a.Year),
+      );
       onInputOrder(orderMovies);
     }
   };
@@ -28,7 +30,7 @@ function List({ movies, onInputOrder }: ListProps): JSX.Element {
       {movies.length !== 0 && (
         <>
           <form>
-            <select id="year" type="text" onChange={handleOrderYear}>
+            <select id="year" onChange={handleOrderYear}>
               <option value="none">Ordenar por año</option>
               <option value="ascendente">ascendente</option>
               <option value="descendente">descendente</option>

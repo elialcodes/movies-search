@@ -1,6 +1,7 @@
 import React from 'react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import './App.css';
+import debounce from 'just-debounce-it';
 import getDataApi from './services/api.js';
 import Header from './components/Header';
 import List from './components/List';
@@ -22,14 +23,27 @@ function App(): JSX.Element {
   //const movies: SearchMovies = moviesExample.Search;
   //const error: { Response: string; Error: string } = errorExample;
 
+  //con la función debouce importada de la librería "just debouced it", hacemos que
+  //la función que setea el estado se ejecute a los 300 milisegundos, es como un
+  //set TimeOut, así el estado no cambia con cada letra introducida en el input
+  //de título y el listado de películas no se muestra con cada letra, se muestra
+  //cuando el usuario ha terminado de escribir (suele ser a los 300 milisegundos)
+  const debouncedSetMovies = useCallback(
+    debounce((movies: SearchMovies) => {
+      setMovies(movies);
+    }, 300),
+    [],
+  );
+
   //función fetch a la api
   useEffect(() => {
     //si la query es igual que la query anterior, no hace el fetch de getDataApi
     if (query === previousQuery.current) {
       return;
     }
+
     getDataApi(query).then((movies: SearchMovies) => {
-      setMovies(movies);
+      debouncedSetMovies(movies);
     });
   }, [query]);
 

@@ -48,7 +48,6 @@ function Header({
           type="text"
           placeholder="Oppenheimer, Dune..."
         />
-        <button type="submit">Buscar</button>
       </form>
       <p className="error">{error}</p>
     </header>

@@ -4,10 +4,11 @@ import Movie from './Movie';
 React;
 interface ListProps {
   movies: SearchMovies;
+  loading: boolean;
   onInputOrder: (orderMovies: SearchMovies) => void;
 }
 
-function List({ movies, onInputOrder }: ListProps): JSX.Element {
+function List({ movies, loading, onInputOrder }: ListProps): JSX.Element {
   const handleOrderYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const inputSelect = event.target.value;
     let orderedMovies: SearchMovies = [];
@@ -29,7 +30,8 @@ function List({ movies, onInputOrder }: ListProps): JSX.Element {
 
   return (
     <>
-      {movies && movies.length > 0 ? (
+      {loading && <p>Cargando...</p>}
+      {movies && movies.length && (
         <>
           <form>
             <select id="year" onChange={handleOrderYear}>
@@ -44,8 +46,6 @@ function List({ movies, onInputOrder }: ListProps): JSX.Element {
             ))}
           </ul>
         </>
-      ) : (
-        <p className="error">No hay películas disponibles</p>
       )}
     </>
   );

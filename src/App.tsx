@@ -13,6 +13,7 @@ function App(): JSX.Element {
   //estados
   const [movies, setMovies] = useState<SearchMovies>([]);
   const [query, setQuery] = useState<string>('');
+  const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   //constante a modo de useRef para que guarde como referencia la query y
@@ -20,6 +21,7 @@ function App(): JSX.Element {
   const previousQuery = useRef<string>(query);
 
   //ejemplo de datos que devolverá el fetch para ir pintando unas películas o un error
+  //sin tener una llamda a la api:
   //const movies: SearchMovies = moviesExample.Search;
   //const error: { Response: string; Error: string } = errorExample;
 
@@ -30,6 +32,7 @@ function App(): JSX.Element {
   //cuando el usuario ha terminado de escribir (suele ser a los 300 milisegundos)
   const debouncedSetMovies = useCallback(
     debounce((movies: SearchMovies) => {
+      setLoading(false);
       setMovies(movies);
     }, 300),
     [],
@@ -43,6 +46,7 @@ function App(): JSX.Element {
     }
 
     getDataApi(query).then((movies: SearchMovies) => {
+      setLoading(true);
       debouncedSetMovies(movies);
     });
   }, [query]);
@@ -71,7 +75,11 @@ function App(): JSX.Element {
         onError={handleError}
       />
       <main className="main">
-        <List movies={movies} onInputOrder={handleOrderMovies} />
+        <List
+          movies={movies}
+          loading={loading}
+          onInputOrder={handleOrderMovies}
+        />
       </main>
     </div>
   );

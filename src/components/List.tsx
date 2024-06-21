@@ -11,17 +11,17 @@ function List({ movies, onInputOrder }: ListProps): JSX.Element {
   const handleOrderYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const inputSelect = event.target.value;
     if (inputSelect === 'ascendente') {
-      console.log('ascendente');
       const orderMovies = [...movies].sort(
         (a, b) => parseInt(a.Year) - parseInt(b.Year),
       );
       onInputOrder(orderMovies);
-    } else {
-      console.log('descendente');
+    } else if (inputSelect === 'descendente') {
       const orderMovies = [...movies].sort(
         (a, b) => parseInt(b.Year) - parseInt(a.Year),
       );
       onInputOrder(orderMovies);
+    } else {
+      onInputOrder(movies);
     }
   };
 

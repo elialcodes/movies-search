@@ -34,7 +34,7 @@ function App(): JSX.Element {
     debounce((movies: SearchMovies) => {
       setLoading(false);
       setMovies(movies);
-    }, 300),
+    }, 2000),
     [],
   );
 

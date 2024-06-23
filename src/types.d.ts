@@ -6,4 +6,4 @@ interface Movie {
   Poster: string;
 }
 
-type SearchMovies = Movie[];
+type SearchMovies = Movie[] | undefined;

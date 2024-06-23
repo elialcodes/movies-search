@@ -8,11 +8,14 @@ function getDataApi(query) {
       .then((response) => response.json())
       .then((data) => {
         const moviesData = data.Search;
-        return moviesData;
+        if (moviesData === undefined) {
+          console.log('error');
+        } else {
+          return moviesData;
+        }
       })
       .catch((error) => {
         console.error('Error fetching data: ', error);
-        throw error;
       });
   }
 }

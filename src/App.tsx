@@ -1,7 +1,6 @@
 import React from 'react';
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
-import debounce from 'just-debounce-it';
 import getDataApi from './services/api.js';
 import Header from './components/Header';
 import List from './components/List';
@@ -11,7 +10,7 @@ React;
 
 function App(): JSX.Element {
   //estados
-  const [movies, setMovies] = useState<SearchMovies>([]);
+  const [movies, setMovies] = useState<SearchMovies>(undefined);
   const [query, setQuery] = useState<string>('');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -25,18 +24,17 @@ function App(): JSX.Element {
   //const movies: SearchMovies = moviesExample.Search;
   //const error: { Response: string; Error: string } = errorExample;
 
-  //con la función debouce importada de la librería "just debouced it", hacemos que
-  //la función que setea el estado se ejecute a los 300 milisegundos, es como un
-  //set TimeOut, así el estado no cambia con cada letra introducida en el input
-  //de título y el listado de películas no se muestra con cada letra, se muestra
-  //cuando el usuario ha terminado de escribir (suele ser a los 300 milisegundos)
-  const debouncedSetMovies = useCallback(
-    debounce((movies: SearchMovies) => {
-      setLoading(false);
-      setMovies(movies);
-    }, 1000),
-    [],
-  );
+  //función para devolver un mensaje si se introduce una búsqueda erronea
+  const handleError = (movies: SearchMovies, query: string) => {
+    if (query === '') {
+      setErrorMessage('');
+    }
+    if (movies === undefined && query) {
+      setErrorMessage('No hay coincidencias');
+    } else {
+      setErrorMessage('');
+    }
+  };
 
   //función fetch a la api
   useEffect(() => {
@@ -45,9 +43,12 @@ function App(): JSX.Element {
       return;
     }
 
+    setLoading(true);
     getDataApi(query).then((movies: SearchMovies) => {
-      setLoading(true);
-      debouncedSetMovies(movies);
+      setLoading(false);
+      setMovies(movies);
+      handleError(movies, query);
+      //debouncedSetMovies(movies);
     });
   }, [query]);
 
@@ -61,20 +62,9 @@ function App(): JSX.Element {
     setMovies(orderMovies);
   };
 
-  //función para devolver un mensaje si se introduce una búsqueda erronea
-  const handleError = (message: string | null) => {
-    setErrorMessage(message);
-  };
-
   return (
     <div className="page">
-      <Header
-        movies={movies}
-        query={query}
-        error={errorMessage}
-        onInputQuery={handleInputQuery}
-        onError={handleError}
-      />
+      <Header query={query} error={errorMessage} onChange={handleInputQuery} />
       <main className="main">
         <List
           movies={movies}

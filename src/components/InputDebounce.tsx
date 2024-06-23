@@ -3,7 +3,6 @@ import React, { useState, useRef, useEffect } from 'react';
 type InputDebounceProps = {
   error: string | null;
   query: string;
-  // Añadido el prop onChange para manejar el cambio del input desde el componente padre:
   onChange: (value: string) => void;
 };
 

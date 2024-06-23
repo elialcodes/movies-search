@@ -15,10 +15,6 @@ function App(): JSX.Element {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  //constante a modo de useRef para que guarde como referencia la query y
-  //no nos permita hacer la misma búsqueda 2 veces seguidas
-  const previousQuery = useRef<string>(query);
-
   //ejemplo de datos que devolverá el fetch para ir pintando unas películas o un error
   //sin tener una llamda a la api:
   //const movies: SearchMovies = moviesExample.Search;
@@ -36,20 +32,17 @@ function App(): JSX.Element {
     }
   };
 
-  //función fetch a la api
+  //useEffect con fetch a la api
   useEffect(() => {
-    //si la query es igual que la query anterior, no hace el fetch de getDataApi
-    if (query === previousQuery.current) {
-      return;
+    if (query) {
+      setLoading(true);
+      getDataApi(query).then((movies: SearchMovies) => {
+        setLoading(false);
+        setMovies(movies);
+        handleError(movies, query);
+        //debouncedSetMovies(movies);
+      });
     }
-
-    setLoading(true);
-    getDataApi(query).then((movies: SearchMovies) => {
-      setLoading(false);
-      setMovies(movies);
-      handleError(movies, query);
-      //debouncedSetMovies(movies);
-    });
   }, [query]);
 
   //función para setear el estado con el valor del input

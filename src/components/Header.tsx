@@ -3,6 +3,7 @@ import React from 'react';
 React;
 
 type HeaderProps = {
+  movies: SearchMovies;
   query: string;
   error: string | null;
   onInputQuery: (value: string) => void;
@@ -10,6 +11,7 @@ type HeaderProps = {
 };
 
 function Header({
+  movies,
   query,
   error,
   onInputQuery,
@@ -18,14 +20,14 @@ function Header({
   //función para manejar el preventDefault del formulario y posibles errores
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    if (query.length <= 3) {
+    if (query.length <= 2) {
       onError('Título demasiado corto');
     }
     if (query === '') {
       onError('Es necesario introducir un título');
     }
-    if (query.match(/^\d+$/)) {
-      onError('Introduce un título válido');
+    if (query !== '' && movies.length === 0) {
+      onError('No hay coincidencias');
     }
   };
 

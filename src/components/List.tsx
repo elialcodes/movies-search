@@ -31,7 +31,7 @@ function List({ movies, loading, onInputOrder }: ListProps): JSX.Element {
   return (
     <>
       {loading && <p>Cargando...</p>}
-      {movies && movies.length && (
+      {movies && movies.length !== 0 && (
         <>
           <form>
             <select id="year" onChange={handleOrderYear}>

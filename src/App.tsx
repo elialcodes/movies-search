@@ -34,7 +34,7 @@ function App(): JSX.Element {
     debounce((movies: SearchMovies) => {
       setLoading(false);
       setMovies(movies);
-    }, 2000),
+    }, 1000),
     [],
   );
 
@@ -69,6 +69,7 @@ function App(): JSX.Element {
   return (
     <div className="page">
       <Header
+        movies={movies}
         query={query}
         error={errorMessage}
         onInputQuery={handleInputQuery}

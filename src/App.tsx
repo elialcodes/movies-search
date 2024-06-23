@@ -40,7 +40,6 @@ function App(): JSX.Element {
         setLoading(false);
         setMovies(movies);
         handleError(movies, query);
-        //debouncedSetMovies(movies);
       });
     }
   }, [query]);

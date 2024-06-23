@@ -20,13 +20,10 @@ function Header({
   //función para manejar el preventDefault del formulario y posibles errores
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    if (query.length <= 2) {
-      onError('Título demasiado corto');
-    }
     if (query === '') {
       onError('Es necesario introducir un título');
     }
-    if (query !== '' && movies.length === 0) {
+    if (query && movies.length === 0) {
       onError('No hay coincidencias');
     }
   };

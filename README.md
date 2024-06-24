@@ -74,5 +74,5 @@ Clone the repository: https://github.com/elialcodes/movies-search.git
 
 ## Links 🔗
 
-https://tic-tac-toe-game-smoky-beta.vercel.app/
+https://movies-search-murex-seven.vercel.app/
 

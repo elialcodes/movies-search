@@ -14,7 +14,7 @@ function InputDebounce({ query, error, onChange }: InputDebounceProps) {
   //para hacer una referencia mutable persista entre renders, almacenará
   //el ID del timeout (todos los timeout y setInterval tiene un id intrínseco que
   //se puede usar para cancelarlos con clearTimeout o clearInterval)
-  const timeoutId = useRef<NodeJS.Timeout | null>(null);
+  const timeoutId = useRef<number | null>(null);
 
   //actualiza el estado local value cuando el estado de la prop query cambie
   useEffect(() => {
@@ -44,7 +44,7 @@ function InputDebounce({ query, error, onChange }: InputDebounceProps) {
       clearTimeout(timeoutId.current);
     }
 
-    timeoutId.current = setTimeout(() => {
+    timeoutId.current = window.setTimeout(() => {
       onChange(value);
     }, 1000);
   };

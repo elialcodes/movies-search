@@ -9,6 +9,7 @@ interface ListProps {
 }
 
 function List({ movies, loading, onInputOrder }: ListProps): JSX.Element {
+  //función manejadora para recoger cual es el select pulsado
   const handleOrderYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const inputSelect = event.target.value;
     let orderedMovies: SearchMovies = [];

@@ -22,9 +22,6 @@ function App(): JSX.Element {
 
   //función para devolver un mensaje si se introduce una búsqueda erronea
   const handleError = (movies: SearchMovies, query: string) => {
-    if (query === '') {
-      setErrorMessage('');
-    }
     if (movies === undefined && query) {
       setErrorMessage('No hay coincidencias');
     } else {
@@ -44,12 +41,12 @@ function App(): JSX.Element {
     }
   }, [query]);
 
-  //función para setear el estado con el valor del input
+  //función para setear el estado query con el valor del input
   const handleInputQuery = (value: string): void => {
     setQuery(value);
   };
 
-  //función para ordenar las películas por año
+  //función para setear el estado movies con las películas ordenadas por año
   const handleOrderMovies = (orderMovies: SearchMovies) => {
     setMovies(orderMovies);
   };

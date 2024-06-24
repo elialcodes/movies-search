@@ -1,4 +1,4 @@
-# SEARCH MOVIES :x: :trophy: :o: :four_leaf_clover:
+# SEARCH MOVIES :tv: :performing_arts: :movie_camera: 
 
 Welcome to search movies, where I am sure you will find the movie you are searching.  
 

@@ -2,6 +2,7 @@
 
 Welcome to search movies, where I am sure you will find the movie you are searching.  
 
+
 ## Features :star:
 
 - There is an input to write and search the movie making a fetching to the api.
@@ -11,13 +12,16 @@ Welcome to search movies, where I am sure you will find the movie you are search
 - Automatically movies search while the user writes.
 - A debounce has been added to avoid update the search continually.
 
+
 ## Api 🔗
 
 API: https://www.omdbapi.com/
 
+
 ## Tech Stack 📚
 
 HTML, CSS, Vite, TypeScript and React.
+
 
 ## Installation 💻
 
@@ -66,6 +70,7 @@ parserOptions: {
 ```
 
 Clone the repository: https://github.com/elialcodes/movies-search.git
+
 
 ## Links 🔗
 

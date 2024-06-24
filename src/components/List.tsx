@@ -13,18 +13,20 @@ function List({ movies, loading, onInputOrder }: ListProps): JSX.Element {
   const handleOrderYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const inputSelect = event.target.value;
     let orderedMovies: Movie[] = [];
-    if (inputSelect === 'none') {
-      orderedMovies = [...movies];
-    }
-    if (inputSelect === 'ascendente') {
-      orderedMovies = [...movies].sort(
-        (a, b) => parseInt(a.Year) - parseInt(b.Year),
-      );
-    }
-    if (inputSelect === 'descendente') {
-      orderedMovies = [...movies].sort(
-        (a, b) => parseInt(b.Year) - parseInt(a.Year),
-      );
+    if (movies !== undefined) {
+      if (inputSelect === 'none') {
+        orderedMovies = [...movies];
+      }
+      if (inputSelect === 'ascendente') {
+        orderedMovies = [...movies].sort(
+          (a, b) => parseInt(a.Year) - parseInt(b.Year),
+        );
+      }
+      if (inputSelect === 'descendente') {
+        orderedMovies = [...movies].sort(
+          (a, b) => parseInt(b.Year) - parseInt(a.Year),
+        );
+      }
     }
     onInputOrder(orderedMovies);
   };

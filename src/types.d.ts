@@ -7,3 +7,8 @@ interface Movie {
 }
 
 type SearchMovies = Movie[] | undefined;
+
+type ApiResponse = {
+  Search?: Movie[];
+  Error?: string;
+};

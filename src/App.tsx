@@ -1,7 +1,7 @@
 import React from 'react';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
-import getDataApi from './services/api.js';
+import { getDataApi } from './services/api';
 import Header from './components/Header';
 import List from './components/List';
 //import moviesExample from './mocks/moviesExample.json';

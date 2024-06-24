@@ -6,7 +6,7 @@ export async function getDataApi(query: string): Promise<Movie[] | undefined> {
   } else {
     try {
       const response = await fetch(
-        `http://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`,
+        `https://www.omdbapi.com/?apikey=${API_KEY}&s=${query}`,
       );
       const data: ApiResponse = await response.json(); //devuelve un objeto con mucha información
       const moviesData = data.Search; //nos quedamos con lo que está en .Search

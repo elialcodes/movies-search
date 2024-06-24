@@ -8,6 +8,7 @@ Welcome to search movies, where I am sure you will find the movie you are search
 - There is an input to write and search the movie making a fetching to the api.
 - The movies appear in a list which shows title, year and poster for each movie.
 - The movies list looks in a grid responsive.
+- The user can see the movies sorted by year (in ascending or descending sort).
 - Avoid search the same movie two consecutive times.
 - Automatically movies search while the user writes.
 - A debounce has been added to avoid update the search continually.

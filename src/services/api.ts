@@ -1,4 +1,4 @@
-const API_KEY = '56aa5655';
+const API_KEY = import.meta.env.VITE_API_KEY;
 
 export async function getDataApi(query: string): Promise<Movie[] | undefined> {
   if (query === '') {

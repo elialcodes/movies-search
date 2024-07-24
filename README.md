@@ -42,31 +42,6 @@ Start the project:
   npm run dev
 ```
 
-Expanding the ESLint configuration
-
-```bash
-  npx eslint --init
-```
-
-- Choose:
-
-  - to check syntax, find problems and enfource code style
-  - JavaScript modules (import/export)
-  - React
-  - use TypeScript
-  - style guide Standard-with-TypeScript
-  - format JavaScript
-
-- Configure the top-level `parserOptions` property like this:
-
-```
-parserOptions: {
-    project: './tsconfig.json',
-  }
-```
-
-
-
 
 ## Links 🔗
 

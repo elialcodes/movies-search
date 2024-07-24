@@ -28,12 +28,7 @@ HTML, CSS, Vite, TypeScript and React.
 
 Previously, you have to install Node.js.
 
-```bash
-  npm create vite@lastest movies-search
-```
-
-Select a framework: React
-Select a variant: TypeScript + SWC
+Clone the repository: https://github.com/elialcodes/movies-search.git
 
 Install node_modules folder:
 
@@ -70,7 +65,7 @@ parserOptions: {
   }
 ```
 
-Clone the repository: https://github.com/elialcodes/movies-search.git
+
 
 
 ## Links 🔗

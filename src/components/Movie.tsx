@@ -1,5 +1,4 @@
-import React from 'react';
-React;
+/* eslint-disable react/react-in-jsx-scope */
 interface MovieProps {
   movie: Movie;
 }

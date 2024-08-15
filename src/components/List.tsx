@@ -1,7 +1,6 @@
 import React from 'react';
 import Movie from './Movie';
 
-React;
 interface ListProps {
   movies: SearchMovies;
   loading: boolean;

@@ -1,5 +1,3 @@
-import React from 'react';
-React;
 interface MovieProps {
   movie: Movie;
 }

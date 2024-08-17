@@ -1,8 +1,6 @@
 import React from 'react';
 import InputDebounce from './InputDebounce';
 
-React;
-
 type HeaderProps = {
   query: string;
   error: string | null;
